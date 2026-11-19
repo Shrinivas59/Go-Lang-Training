@@ -1,0 +1,18 @@
+package main
+
+import "fmt"
+
+func calculate(ch chan int) {
+    result := 10 * 10
+    ch <- result
+}
+
+func main() {
+    ch := make(chan int)
+
+    go calculate(ch)
+
+    result := <-ch
+
+    fmt.Println(result)
+}
